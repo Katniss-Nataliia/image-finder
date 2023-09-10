@@ -3,7 +3,7 @@ import { ImageSearch } from './Searchbar';
 import { ImageCard } from './ImageGallery';
 import { fetchImages } from '../services/api';
 import { ImageModal } from './Modal';
-
+import Button from './Button';
 
 const ERROR_MSG = `Something went wrong, please reload the page`;
 
@@ -15,6 +15,8 @@ export class App extends Component {
         error:null,
         selectedImg: null,
         page: 1,
+        topic: '',
+        
     }
 
     //Function to handle search submition
@@ -50,11 +52,12 @@ export class App extends Component {
         })
     }
 
-    handleLoadMore = () => {
-        this.setState((prevState)=>({
-            page: prevState + 1
+    onLoadMoreButtonClick = e => {
+        e.preventDefault();
+        this.setState(({page})=>({
+            page: page + 1
         }))
-        this.fetchedImages()
+        
     }
 
     render(){
@@ -73,12 +76,11 @@ export class App extends Component {
                     gallery.length > 0 && <ImageCard gallery={gallery} onImageClick ={this.setSelectedImg}/>
                 )
             }
+                {gallery.length > 0 && (
+                        <Button onClick={this.onLoadMoreButtonClick} />
+                    )}
 
-            <div className='load-more'>
-                <button className='btn-more' onClick={this.handleLoadMore}>
-                        Load More
-                </button>
-            </div>
+            
 
             <ImageModal
                 isOpen={selectedImg !== null}

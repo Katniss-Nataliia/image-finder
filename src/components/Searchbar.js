@@ -34,6 +34,7 @@ export class ImageSearch extends Component {
         return (
             <div>
                 <header className="Searchbar">
+                
                     <form className="SearchForm">
                         <button type="submit"
                             className="SearchForm-button"
@@ -51,7 +52,7 @@ export class ImageSearch extends Component {
                             onChange={this.handleSearchChange}
                         />
                     </form>
-                </header>
+                    </header>
 
             </div>
         )
