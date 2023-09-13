@@ -1,16 +1,10 @@
-export const App = () => {
-  return (
-    <div
-      // style={{
-      //   height: '100vh',
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      //   fontSize: 40,
-      //   color: '#010101'
-      // }}
-    >
-     
-    </div>
-  );
-};
+// import React from "react";
+// import { App } from "App";
+
+// export const Application = () => {
+//   return (
+//     <div>
+//     <App/>
+//     </div>
+//   );
+// };

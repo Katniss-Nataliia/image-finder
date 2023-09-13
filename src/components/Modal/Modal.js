@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import s from './Modal.module.css'
 
 const customStyles = {
     content:{
@@ -21,8 +22,8 @@ export const ImageModal = ({isOpen, largeImageURL, onClose}) =>{
             style={customStyles}
             contentLabel='Image modal'
         >
-            <div className='overlay'>
-                <div className='modal'>
+            <div>
+                <div className={s.modal}>
                     <img src={largeImageURL} alt='picture' width='640'/>
                 </div>
 

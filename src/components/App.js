@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import { ImageSearch } from './Searchbar';
-import { ImageCard } from './ImageGallery';
+import { ImageSearch } from './Searchbar/Searchbar';
+import { ImageCard } from './Gallery/ImageGallery';
 import { fetchImages } from '../services/api';
-import { ImageModal } from './Modal';
-import Button from './Button';
+import { ImageModal } from './Modal/Modal';
+import Button from "components/Button";
 
 const ERROR_MSG = `Something went wrong, please reload the page`;
 
@@ -20,7 +20,7 @@ export class App extends Component {
     }
 
     //Function to handle search submition
-    handleSearchSubmit = async (searchText, page) => {
+    handleSearchSubmit = async (topic, page) => {
         try{
             //Set loading state and clear previous error
             this.setState({
@@ -29,7 +29,7 @@ export class App extends Component {
             })
 
             //Fetch images based on search text and page number
-            const fetchedImages = await fetchImages(searchText, page);
+            const fetchedImages = await fetchImages(topic, page);
 
             //update the gallery state with fetched images
             this.setState({
@@ -74,8 +74,9 @@ export class App extends Component {
                     <p>{ERROR_MSG}</p>
                 ) : (
                     gallery.length > 0 && <ImageCard gallery={gallery} onImageClick ={this.setSelectedImg}/>
+                    
                 )
-            }
+                }
                 {gallery.length > 0 && (
                         <Button onClick={this.onLoadMoreButtonClick} />
                     )}

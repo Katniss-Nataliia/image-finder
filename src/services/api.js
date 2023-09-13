@@ -13,6 +13,6 @@ export const fetchImages = async(topic, page) =>{
 
     }catch(error){
         console.log(error);
-        throw error
+        throw error;
     }
 }

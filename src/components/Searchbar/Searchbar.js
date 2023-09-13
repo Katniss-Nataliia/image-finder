@@ -1,55 +1,59 @@
-import { Component } from "react";
+import React, { Component } from "react";
+import PropTypes from 'prop-types';
+import s from './Searchbar.module.css';
+import { BsSearch } from 'react-icons/bs';
 
 export class ImageSearch extends Component {
     state = {
-        searchText: '',
+        topic: '',
     }
 
     //function to hande changes in the search intut
 
     handleSearchChange = e => {
         this.setState({
-            searchText: e.target.value,
+            topic: e.target.value,
         });
     };
 
     //function to handle search from submission
     handleSubmit = async e => {
         e.preventDefault();
-        const {searchText} = this.state; //Destructuring searchText from state
+        const {topic} = this.state; //Destructuring searchText from state
         const {onSearchSubmit} = this.props;
 
-        if (searchText.trim() === ''){
+        if (topic.trim() === ''){
             return; //Don't perform search if the input is empty
         }
         // Call the function passed from App component to initiate the search
-        onSearchSubmit(searchText, 1); // Passing search text and initial page (missing logic to change the page)
-
+        onSearchSubmit(topic, 1); // Passing search text and initial page (missing logic to change the page)
+        this.setState({topic: ''})
         // Logging the current state of the gallery array
         console.log('react file:Search.js gallery: ', this.state.gallery)
          
     }
     render() {
-        const { searchText } = this.state;
+        const { topic } = this.state;
+        const {handleSubmit, handleSearchChange} = this;
         return (
             <div>
-                <header className="Searchbar">
+                <header className={s.searchbar}>
                 
-                    <form className="SearchForm">
+                    <form className={s.form}>
                         <button type="submit"
-                            className="SearchForm-button"
-                            onClick={this.handleSubmit}>
-                            <span className="SearchForm-button-label">GO</span>
+                            className={s.button}
+                            onClick={handleSubmit}>
+                            <span className={s.buttonLabel}><BsSearch fill="#3f51b5"/></span>
                         </button>
 
                         <input
-                            className="SearchForm-input"
+                            className={s.input}
                             type="text"
                             autoComplete="off"
                             autoFocus
                             placeholder="Search images and photos"
-                            value={searchText}
-                            onChange={this.handleSearchChange}
+                            value={topic}
+                            onChange={handleSearchChange}
                         />
                     </form>
                     </header>
@@ -57,4 +61,7 @@ export class ImageSearch extends Component {
             </div>
         )
     }
+}
+ImageSearch.propTypes = {
+    onSubmit:PropTypes.func.isRequired
 }
