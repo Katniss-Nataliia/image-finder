@@ -4,6 +4,7 @@ import { ImageCard } from './Gallery/ImageGallery';
 import { fetchImages } from '../services/api';
 import { ImageModal } from './Modal/Modal';
 import Button from "components/Button";
+import { Loader } from './Loader/Loader';
 
 const ERROR_MSG = `Something went wrong, please reload the page`;
 
@@ -69,7 +70,8 @@ export class App extends Component {
                 {/* Render loading message, error message, or ImageCard */}
                 {
                 isLoading?(
-                    <p>Loading...</p>
+                    // <p>Loading...</p>
+                    <Loader/>
                 ) : error ? (
                     <p>{ERROR_MSG}</p>
                 ) : (
